@@ -1,0 +1,8 @@
+#!/bin/bash
+
+yum install -y docker-engine-1.11.2
+
+systemctl start docker
+systemctl enable docker
+
+sysctl -w net.netfilter.nf_conntrack_tcp_be_liberal=1

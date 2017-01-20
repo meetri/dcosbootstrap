@@ -1,0 +1,9 @@
+#!/bin/bash
+
+IP=$1
+
+tar -czf setup.tgz ./_setup
+
+echo "deploying setup bundles to $IP"
+scp -i ~/.ssh/ztwoikey.pem setup.tgz centos@$IP:~
+scp -i ~/.ssh/ztwoikey.pem bin/dcos_bootstrap.tar centos@$IP:~

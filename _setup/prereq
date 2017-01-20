@@ -1,0 +1,15 @@
+mv docker.service.d /etc/systemd/system
+mv docker.repo /etc/yum.repos.d/
+mv overlay.conf /etc/modules-load.d
+
+mkdir /opt/dcos_install_tmp
+tar -xf ../dcos_bootstrap.tar -C /opt/dcos_install_tmp
+
+yum upgrade --assumeyes --tolerant
+yum update --assumeyes
+
+yum install -y unzip ipset epel-release jq
+
+sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
+groupadd nogroup
+
